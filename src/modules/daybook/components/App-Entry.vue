@@ -1,9 +1,10 @@
 <template>
   <div
     class="entry-container mb-3 pointer p-2"
-    @click="$router.push({ name: 'entry', params: { id: 10 } })"
+ 
+    @click="$router.push({ name: 'entry-view', params: { id:entry.id } })"
   >
-    <!--TITULO-->
+    <!--TITULO en la linea 5 mi puto error de mierda que me costo la fucking noche jajaja puto ciego!-->
     <div class="entry-title d-flex">
       <span class="text-success fs-5 fw-bold">{{ day }}</span>
       <span class="mx-1 fs-5 fw-bold">{{months}}</span>
