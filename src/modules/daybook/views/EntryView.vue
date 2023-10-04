@@ -1,4 +1,5 @@
 <template>
+  <template v-if="entry"></template>
   <div class="entry-title d-flex justify-content-between p-2">
     <div>
       <span class="text-success fs-3 fw-bold">03</span>
@@ -18,7 +19,11 @@
   </div>
   <hr />
   <div class="d-flex flex-column px-3 h-75">
-    <textarea name="" id="" placeholder="Agrega algo para guardar"></textarea>
+    <textarea  
+    v-model="entry.text"
+     placeholder="Agrega algo para guardar"
+    
+     ></textarea>
   </div>
   <FabComponent icon="fa-save" />
   <img
@@ -29,14 +34,42 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent } from 'vue';
+import { mapGetters } from 'vuex';
 
 export default {
+  props:{
+    id:{
+      type: String,
+      required: true
+    }
+  },
   components: {
     FabComponent: defineAsyncComponent(() =>
-      import("../components/FabComponent.vue")
+    import('../components/FabComponent.vue')
     ),
   },
+  data() {
+    return { 
+      entry: null // { text: '' },
+    }
+  },
+  computed:{
+    ...mapGetters('journal', ['getEntryById'])
+  },
+  methods:{
+    loadEntry(){
+      const entry = this.getEntryById(this.id)
+      console.log('Entry:', entry);
+
+      if(!entry) return this.$router.push({ name: 'no-entry' })
+
+      this.entry = entry
+    }
+  },
+  created (){
+  this.loadEntry()
+  }
 };
 </script>
 

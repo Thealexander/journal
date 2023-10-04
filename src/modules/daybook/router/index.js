@@ -8,8 +8,13 @@ export default {
             component: () => import( /* webpackChunkName: "no-entry"*/("../views/NoEntrySelected.vue"))
         },
         {
-            path: ':id', name: 'entry-view',
-            component: () => import( /* webpackChunkName: "entry-view"*/("../views/EntryView.vue"))
+            path: ':id', name: 'entry',
+            component: () => import( /* webpackChunkName: "entry-view"*/("../views/EntryView.vue")),
+            props:(route)=>{
+                return {
+                    id: route.params.id
+                }
+            }
         }
     ]
 
