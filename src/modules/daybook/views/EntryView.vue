@@ -35,14 +35,13 @@
         placeholder="Agrega algo para guardar"
       ></textarea>
     </div>
-    <!--
-      <img
-        src="https://poemsinspanish.club/wp-content/uploads/2021/11/home_img_09-519x513.jpg"
+    
+      <img v-if="entry.picture && !localImage"
+        :src="entry.picture"
         alt="entry-picture"
         class="img-thumbnail"
       />
-    -->
-    <img
+        <img
       v-if="localImage"
       :src="localImage"
       alt="entry-picture"
@@ -58,6 +57,7 @@ import { defineAsyncComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 import Swal from "sweetalert2";
 import gDMY from "../helpers/gDMY";
+import uploadImage from '../helpers/uploadImage';
 
 export default {
   props: {
@@ -116,6 +116,9 @@ export default {
       });
       Swal.showLoading();
 
+      const picture = await uploadImage(this.file)
+      this.entry.picture = picture
+
       //console.log('Guardando')
       if (this.entry.id) {
         await this.updateEntry(this.entry);
@@ -124,6 +127,7 @@ export default {
         const id = await this.createEntry(this.entry);
         this.$router.push({ name: "entry-view", params: { id } });
       }
+      this.file = null
       Swal.fire("Registrado", "Entrada Guardada correctamente", "success");
     },
     async onDeleteEntry() {
