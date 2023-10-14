@@ -16,7 +16,7 @@ describe('Pruebas en el router module del Daybook', () => {
                     },
                     {
                         path: ':id',
-                        name: 'entry',
+                        name: 'entry-view',
                         component: expect.any( Function ),
                         props: expect.any( Function )
                     }
@@ -46,7 +46,7 @@ describe('Pruebas en el router module del Daybook', () => {
         }
 
         // expect( daybookRouter.children[1].props( route ) ).toEqual({ id: 'ABC-123' })
-        const entryRoute = daybookRouter.children.find( route => route.name === 'entry' )
+        const entryRoute = daybookRouter.children.find( route => route.name === 'entry-view' )
         expect( entryRoute.props( route ) ).toEqual({ id: 'ABC-123' })
     })
     
