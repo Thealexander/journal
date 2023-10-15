@@ -32,8 +32,8 @@ describe('Vuex: Pruebas en el auth-module', () => {
         })
 
         const payload = {
-            user: { name: 'Fernando', email: 'fernando@gmail.com' },
-            idToken: 'ABC-123',
+            user: { name: 'alexander', email: 'alexg@gmail.com' },
+            idToken: '1234567',
             refreshToken: 'XYZ-123'
         }
 
@@ -42,8 +42,8 @@ describe('Vuex: Pruebas en el auth-module', () => {
         const { status, user, idToken, refreshToken } = store.state.auth
         
         expect( status ).toBe( 'authenticated' )
-        expect( user ).toEqual( { name: 'Fernando', email: 'fernando@gmail.com' } )
-        expect( idToken ).toBe( 'ABC-123' )
+        expect( user ).toEqual( { name: 'alexander', email: 'alexg@gmail.com' } )
+        expect( idToken ).toBe( '1234567' )
         expect( refreshToken ).toBe( 'XYZ-123' )
 
     })
@@ -51,13 +51,13 @@ describe('Vuex: Pruebas en el auth-module', () => {
     
     test('Mutation: logout', () => {
 
-        localStorage.setItem('idToken','ABC-123')
+        localStorage.setItem('idToken','1234567')
         localStorage.setItem('refreshToken','XYZ-123')
       
         const store = createVuexStore({
             status: 'authenticated', // 'authenticated','not-authenticated', 'authenticating'
-            user: { name: 'fernando', email: 'fer@gmail.com' },
-            idToken: 'ABC-123',
+            user: { name: 'alexander', email: 'alexg@gmail.com' },
+            idToken: '1234567',
             refreshToken: 'XYZ-456'
         })
 
@@ -80,13 +80,13 @@ describe('Vuex: Pruebas en el auth-module', () => {
         
         const store = createVuexStore({
             status: 'authenticated', // 'authenticated','not-authenticated', 'authenticating'
-            user: { name: 'fernando', email: 'fer@gmail.com' },
-            idToken: 'ABC-123',
+            user: { name: 'alexander', email: 'alex@gmail.com' },
+            idToken: '1234567',
             refreshToken: 'XYZ-456'
         })
 
         expect( store.getters['auth/currentState'] ).toBe('authenticated')
-        expect( store.getters['auth/username'] ).toBe('fernando')
+        expect( store.getters['auth/username'] ).toBe('alexander')
 
     })
     
@@ -128,7 +128,7 @@ describe('Vuex: Pruebas en el auth-module', () => {
         const { idToken } = store.state.auth
 
         // Borrar el usuario
-        const deleteResp = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:delete?key=AIzaSyBhCquFEBH1rgR5IJFo1v1qGiZzHDe2PVI`, {
+        const deleteResp = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:delete?key=AIzaSyBT5LUx1GrFeLv4pbEbrPYE0aWG72IwQc4`, {
             idToken
         })
 
@@ -155,7 +155,7 @@ describe('Vuex: Pruebas en el auth-module', () => {
         })
 
         // SignIn
-        const signInResp = await store.dispatch('auth/signInUser', { email: 'test@test.com', password:'123456' })
+        const signInResp = await store.dispatch('auth/signInUser', { email: 'test@test.com', password:'1234567' })
         const { idToken } = store.state.auth 
         store.commit('auth/logout')
 

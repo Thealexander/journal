@@ -5,7 +5,7 @@
             <img src="@/assets/logo.png" alt="Vue logo"
             height="24"
             class="d-inline-block align-text-top mx-2">
-            {{userName}}
+            {{username}}
         </a>
         <div class="d-flex">
             <button @click="onLogout" 
@@ -22,10 +22,10 @@ export default {
 
     setup(){
         const router = useRouter ()
-        const {userName, logout} = useAuth()
+        const { username, logout} = useAuth()
 
         return {
-            userName,
+            username,
             onLogout: () =>
             {
                 router.push({name: 'login'})

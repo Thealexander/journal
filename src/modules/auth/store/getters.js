@@ -6,6 +6,6 @@
 export const currentState = (state) =>{
     return state.status
 }
-export const userName = (state) =>{
+export const username = (state) =>{
     return state.user?.name ||  ''
 }

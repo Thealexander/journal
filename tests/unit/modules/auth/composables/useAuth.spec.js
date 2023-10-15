@@ -5,7 +5,7 @@ const mockStore = {
     commit: jest.fn(),
     getters: {
         'auth/currentState': 'authenticated',
-        'auth/username': 'Fernando'
+        'auth/username': 'alexander'
     }
 }
 
@@ -24,7 +24,7 @@ describe('Pruebas en useAuth', () => {
         
         const { createUser } = useAuth()
 
-        const newUser = { name: 'Fernando', email: 'fernando@gmail.com' }
+        const newUser = { name: 'alexander', email: 'alexg@test.com' }
         mockStore.dispatch.mockReturnValue({ ok: true })
 
         const resp = await createUser( newUser )
@@ -39,7 +39,7 @@ describe('Pruebas en useAuth', () => {
         
         const { createUser } = useAuth()
 
-        const newUser = { name: 'Fernando', email: 'fernando@gmail.com' }
+        const newUser = { name: 'alexander', email: 'alexg@gmail.com' }
         mockStore.dispatch.mockReturnValue({ ok: false, message: 'EMAIL_EXISTS' })
 
         const resp = await createUser( newUser )
@@ -53,7 +53,7 @@ describe('Pruebas en useAuth', () => {
     test('login exitoso', async() => {
         
         const { loginUser } = useAuth()
-        const loginForm = { email: 'test@test.com', password: '123456' }
+        const loginForm = { email: 'test@test.com', password: '1234567' }
         mockStore.dispatch.mockReturnValue({ ok: true })
 
         const resp = await loginUser( loginForm )

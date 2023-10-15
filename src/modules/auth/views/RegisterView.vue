@@ -44,8 +44,8 @@ setup(){
   const router = useRouter()
   const {createUser} = useAuth()  
   const userForm = ref({
-    name:'alexander',
-    email:'alexg@test.com',
+    name:'tester1',
+    email:'test@test.com',
     password:'1234567'
   })
 
