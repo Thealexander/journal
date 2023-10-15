@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 
-import NavBar from '@/modules/daybook/components/NavBar.vue'
+import NavBar from '@/modules/daybook/components/App-NavBar.vue'
 import createVuexStore from '../../../mock-data/mock-store'
 
 describe('Pruebas en el Navbar component', () => {
@@ -17,7 +17,7 @@ describe('Pruebas en el Navbar component', () => {
 
     beforeEach(() =>  jest.clearAllMocks() )
 
-
+// aca se llega a instar un paquete llamado  npm  install vue-router-mock
     test('debe de mostrar el componente correctamente', () => {
         
         const wrapper = shallowMount( NavBar, {

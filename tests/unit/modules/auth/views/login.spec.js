@@ -65,12 +65,12 @@ describe('Pruebas en el Login Component', () => {
         })
 
         const [ txtEmail, txtPassword ] = wrapper.findAll('input')
-        await txtEmail.setValue('fernando@gmail.com')
-        await txtPassword.setValue('123456')
+        await txtEmail.setValue('alexg@test.com')
+        await txtPassword.setValue('1234567')
 
         await wrapper.find('form').trigger('submit')
 
-        expect( store.dispatch ).toHaveBeenCalledWith('auth/signInUser', { email: 'fernando@gmail.com', password: '123456' })
+        expect( store.dispatch ).toHaveBeenCalledWith('auth/signInUser', { email: 'alexg@test.com', password: '1234567' })
         expect( wrapper.router.push ).toHaveBeenCalledWith({ name: 'no-entry' })
 
         // console.log(wrapper.vm.userForm)
